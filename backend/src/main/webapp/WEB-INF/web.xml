@@ -15,7 +15,6 @@
             <param-name>services</param-name>
             <param-value>com.study.werwe.cal.backend.RegistrationEndpoint,
                 com.study.werwe.cal.backend.MessagingEndpoint,
-                com.study.werwe.cal.backend.SampleRequestEndpoint,
                 com.study.werwe.cal.backend.HiEndpoint</param-value>
         </init-param>
     </servlet>
