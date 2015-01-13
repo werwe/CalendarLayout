@@ -1,8 +1,9 @@
 package com.study.werwe.calendarlayout;
 
 import android.graphics.Color;
-import android.support.v7.app.ActionBarActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
+import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.study.werwe.cal.backend.hiApi.HiApi;
+import com.study.werwe.cal.backend.hiApi.model.Hi;
+
+import java.io.IOException;
 
 
 public class CalendarActivity extends ActionBarActivity {
@@ -22,6 +32,43 @@ public class CalendarActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+
+        Button hi = (Button) findViewById(R.id.hi);
+        hi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HiApi.Builder builder = new HiApi.Builder(
+                    AndroidHttp.newCompatibleTransport(),
+                    new AndroidJsonFactory(),
+                    null);
+
+                builder.setRootUrl("https://calendar-sample-0001.appspot.com/_ah/api");
+                builder.setGoogleClientRequestInitializer( new GoogleClientRequestInitializer() {
+                    @Override
+                    public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
+                        abstractGoogleClientRequest.setDisableGZipContent(true);
+                    }
+                });
+                final HiApi api = builder.build();
+
+                new AsyncTask<Void, Void, Void>() {
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        try {
+                            Hi hi = api.hi("성철").execute().clone();
+
+                            for (String key : hi.keySet()) {
+                                String name = (String) hi.get(key);
+                                System.out.println("hi " + name);
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+                }.execute();
+            }
+        });
 
         mRoot = (LinearLayout) findViewById(R.id.root_layout);
         int rowCount = mRoot.getChildCount();
