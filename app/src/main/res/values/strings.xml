@@ -4,5 +4,6 @@
     <string name="app_name">CalendarLayout</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_kakao_login">KakaoLoginActivity</string>
 
 </resources>
