@@ -1,4 +1,4 @@
-package com.study.werwe.calendarlayout.rest;
+package com.study.werwe.calendarlayout.kakao;
 
 import retrofit.Callback;
 import retrofit.client.Response;
@@ -27,8 +27,5 @@ public interface KakaoAuth {
             @Query("redirect_uri") String redirect_uri
             , Callback<Response> cb
     );
-
-
-
 
 }

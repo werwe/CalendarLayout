@@ -1,17 +1,16 @@
 package com.study.werwe.calendarlayout;
 
-import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.study.werwe.calendarlayout.rest.KakaoAuth;
+import com.study.werwe.calendarlayout.kakao.KakaoAuth;
+import com.study.werwe.calendarlayout.kakao.KakaoWebLoginActivity;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -39,21 +38,13 @@ public class KakaoLoginActivity extends ActionBarActivity {
     Callback callback = new Callback() {
         @Override
         public void success(Object o, Response response) {
-            Log.d(TAG, response.toString());
-            Log.d(TAG, response.getBody().toString());
-            Log.d(TAG, response.getReason());
-            Log.d(TAG, response.getUrl());
-//            Log.d(TAG, response.getHeaders().);
-            Log.d(TAG, "status:"+response.getStatus());
-
-            WebView webView = new WebView(KakaoLoginActivity.this);
-            webView.getSettings().setJavaScriptEnabled(true);
-            webView.loadUrl(response.getUrl());
-//            webView.loadDataWithBaseURL(null, , "text/html", "utf-8", null);
-            AlertDialog.Builder dialog = new AlertDialog.Builder(KakaoLoginActivity.this);
-            dialog.setView(webView);
-            dialog.setCancelable(true);
-            dialog.show();
+//          Log.d(TAG, response.toString());
+//          Log.d(TAG, response.getBody().toString());
+//          Log.d(TAG, response.getReason());
+//            Log.d(TAG, response.getUrl());
+            Intent intent = new Intent(KakaoLoginActivity.this, KakaoWebLoginActivity.class);
+            intent.putExtra("url", response.getUrl());
+            startActivity(intent);
         }
 
         @Override
@@ -86,7 +77,6 @@ public class KakaoLoginActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_kakao_login, menu);
         return true;

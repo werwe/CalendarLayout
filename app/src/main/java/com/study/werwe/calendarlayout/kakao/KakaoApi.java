@@ -1,4 +1,4 @@
-package com.study.werwe.calendarlayout.rest;
+package com.study.werwe.calendarlayout.kakao;
 
 /**
  * Created by starmark on 15. 1. 29..
