@@ -33,7 +33,7 @@
             android:name=".kakao.KakaoWebLoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:label="@string/title_activity_kakao_web_login"
-            android:launchMode="singleInstance">
+            >
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.VIEW" />-->
 
