@@ -1,6 +1,9 @@
 package com.study.werwe.calendarlayout.kakao;
 
+import com.squareup.okhttp.OkHttpClient;
+
 import retrofit.RestAdapter;
+import retrofit.client.OkClient;
 
 /**
  * Created by starmark on 15. 2. 2..
@@ -14,8 +17,8 @@ public class KakaoServiceGenerator {
 
         RestAdapter.Builder builder = new RestAdapter.Builder()
                 .setLogLevel(RestAdapter.LogLevel.FULL)
-                .setEndpoint(baseUrl);
-//                .setClient(new OkClient(new OkHttpClient()));
+                .setEndpoint(baseUrl)
+                .setClient(new OkClient(new OkHttpClient()));
 
 //        if (accessToken != null) {
 //            builder.setRequestInterceptor(new RequestInterceptor() {

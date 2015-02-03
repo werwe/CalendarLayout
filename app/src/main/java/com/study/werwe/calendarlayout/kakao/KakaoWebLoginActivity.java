@@ -14,12 +14,8 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 import com.study.werwe.calendarlayout.R;
 
-import org.apache.http.Header;
 import org.parceler.Parcels;
 
 import butterknife.ButterKnife;
@@ -179,24 +175,6 @@ public class KakaoWebLoginActivity extends ActionBarActivity {
                     }
                 }
         );
-    }
-
-
-    private void getAccessToken(String authCode) {
-        RequestParams params = new RequestParams();
-        params.put("grant_type", "authorization_code");
-        params.put("client_id", APIKEY);
-        params.put("redirect_uri", REDIRECT_URI);
-        params.put("code", authCode);
-
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.post(HOST + "/oauth/token", new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                Log.d(TAG, responseString);
-            }
-        });
-
     }
 
     class KakaoChromeClient extends WebChromeClient {

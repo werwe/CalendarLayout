@@ -74,6 +74,7 @@ public class KakaoLoginActivity extends ActionBarActivity {
         ButterKnife.inject(this);
 
         mKakaoAuth = KakaoServiceGenerator.createService(KakaoApi.class, HOST);
+
     }
 
     @OnClick(R.id.login)
@@ -106,28 +107,12 @@ public class KakaoLoginActivity extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         Log.d(TAG,"KakaoLoginActivity.onActivityResult");
-        Log.d(TAG,"request code : " + requestCode);
         if (requestCode == REQUEST_CODE_LOGIN) {
             if (resultCode == RESULT_OK) {
                 mAccessToken = Parcels.unwrap(data.getParcelableExtra("access_token"));
                 mKakaoApi = KakaoServiceGenerator.createService(KakaoApi.class, "https://kapi.kakao.com", mAccessToken);
                 getProfile();
-                //kakao signup
-//                mKakaoApi.signup("Bearer "mAccessToken.access_token, new Callback<KakaoID>() {
-//                    @Override
-//                    public void success(KakaoID kakaoID, Response response) {
-//                        Log.d(TAG, "kakao id:" + kakaoID.id);
-//                        getProfile(kakaoID.id);
-//
-//                    }
-//
-//                    @Override
-//                    public void failure(RetrofitError error) {
-//
-//                    }
-//                });
             }
         } else {
 
@@ -143,8 +128,9 @@ public class KakaoLoginActivity extends ActionBarActivity {
 //                Log.d(TAG, kakaoProfile.properties.get("thumbnail_image")+"");
 //                Log.d(TAG, kakaoProfile.properties.get("profile_image")+"");
                 mUserName.setText(kakaoProfile.properties.get("nickname"));
-                Glide.with(KakaoLoginActivity.this).load(kakaoProfile.properties.get("profile_image")).into(mProfilePicture);
-
+                Glide.with(KakaoLoginActivity.this)
+                        .load(kakaoProfile.properties.get("profile_image"))
+                        .into(mProfilePicture);
             }
 
             @Override
