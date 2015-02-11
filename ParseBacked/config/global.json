@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "TestCloud": {
+            "applicationId": "Jod6VsCN4t7aP20iJpiZ0XzLxUFXuFDuOEW3e3gs", 
+            "masterKey": "RGZEGLE4dy7yQu9hTFNtlsPcBJlhpyNjDMWl4Ff9"
+        }, 
+        "_default": {
+            "link": "TestCloud"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.4"
+    }
+}

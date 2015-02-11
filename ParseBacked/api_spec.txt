@@ -1,0 +1,14 @@
+curl -X POST \
+  -H "X-Parse-Application-Id: Jod6VsCN4t7aP20iJpiZ0XzLxUFXuFDuOEW3e3gs" \
+  -H "X-Parse-REST-API-Key: CmVRtWdbY7othD3kXazgttPAjaz0Mo000sng70Wc" \
+  -H "Content-Type: application/json" \
+  -d '{}' \
+  https://api.parse.com/1/functions/hello
+
+  curl -X POST \
+  -H "X-Parse-Application-Id: Jod6VsCN4t7aP20iJpiZ0XzLxUFXuFDuOEW3e3gs" \
+  -H "X-Parse-REST-API-Key: CmVRtWdbY7othD3kXazgttPAjaz0Mo000sng70Wc" \
+  -H "Content-Type: application/json" \
+  -d '{}' \
+  https://api.parse.com/1/functions/image
+  
